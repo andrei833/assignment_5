@@ -6,7 +6,11 @@ class Plane():
         self.__airline = airlane
         self.__nr_seats = nr_seats
         self.__destination = destination
-        self.__passengers = passengers
+        self.__passengers = passengers =[
+            Passenger("Ian","Lee","242"),
+            Passenger("Tim","John",1273),
+            Passenger("Alice","Smith",1573)
+        ]
 
     def __str__(self):
         return (f"Plane {self.__id} airline company {self.__airline} with {self.__nr_seats} seats flying to {self.__destination} with the passengers {self.__passengers}.")
