@@ -1,13 +1,13 @@
 from passengerClass import Passenger
 
 class Plane():
-    def __init__(self,id,airlane,nr_seats,destination,passengers):
+    def __init__(self,id,airlane,nr_seats,destination):
         self.__id = id
         self.__airline = airlane
         self.__nr_seats = nr_seats
         self.__destination = destination
-        self.__passengers = passengers =[
-            Passenger("Ian","Lee","242"),
+        self.__passengers =[
+            Passenger("Ian","Lee",242),
             Passenger("Tim","John",1273),
             Passenger("Alice","Smith",1573)
         ]
