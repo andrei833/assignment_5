@@ -7,6 +7,9 @@ class Passenger():
     def __str__(self) -> str:
         return (f"The passanger {self.__first_name} {self.__last_name} has the passport number {self.__passport_nr}.")
     
+    def __repr__(self) -> str:
+        return (f"{self.__first_name} {self.__last_name}")
+
     #getters
     def get_first_name(self):
         return self.__first_name
