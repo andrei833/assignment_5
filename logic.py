@@ -28,5 +28,3 @@ def merge(a, b, my_relation):
 
 def sortalg(my_list, my_relation):
     return mergesort(my_list, my_relation)
-
-print(sortalg([5, 1, 2, 4,3], lambda x,y:x<y))
