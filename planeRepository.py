@@ -4,7 +4,9 @@ from logic import sortalg
 
 class PlaneRepository():
     def __init__(self):
-        self.__data = [Plane(12,"d",23,"cHINA")]
+        self.__data = [Plane(12,"Wiz",23,"Beijing"),
+                       Plane(1,"R_Air",43,"NewYork"),
+                       Plane(1,"Airbuss",11,"France")]
 
     def __str__(self):
         return f"There are {len(self.__data)} airplanes."
@@ -55,7 +57,16 @@ class PlaneRepository():
                 planes.append(p)
         return planes
 
-    def get_planes_name(self,first,last):
+    def get_passenger_string_plane(self,index,string):
+        people = []
+        all_people = self.get_plane_index(index).get_list_of_passengers()
+        print (all_people)
+        for passenger in all_people:
+            if string in passenger.get_first_name() or string in passenger.get_last_name():
+                people.append(passenger)
+        return people
+
+    def get_planes_by_name(self,first,last):
         planes = []
         for p in self.__data:
             ok = 0
@@ -67,14 +78,7 @@ class PlaneRepository():
                 planes.append(p)
         return planes
     
-    def get_passenger_string_plane(self,index,string):
-        people = []
-        all_people = self.get_plane_index(index).get_list_of_passengers()
-        print (all_people)
-        for passenger in all_people:
-            if string in passenger.get_first_name() or string in passenger.get_last_name():
-                people.append(passenger)
-        return people
+    
     
 #repo = PlaneRepository()
 #people = repo.get_passenger_string_plane(0,"i")
