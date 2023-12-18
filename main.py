@@ -1,5 +1,5 @@
-from planeRepository import PlaneRepository
-from userInterface import Ui
+from Infrastructure.planeRepository import PlaneRepository
+from UserInterface.userInterface import Ui
 
 
 if __name__ == "__main__":

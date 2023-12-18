@@ -1,4 +1,4 @@
-from passengerClass import Passenger
+from Domain.passengerClass import Passenger
 
 class Plane():
     def __init__(self,id,airlane,nr_seats,destination,passenger = [

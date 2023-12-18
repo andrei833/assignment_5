@@ -1,6 +1,6 @@
-from planeClass import Plane
-from passengerClass import Passenger
-from logic import sortalg
+from Domain.planeClass import Plane
+from Domain.passengerClass import Passenger
+from Utils.logic import sortalg
 
 class PlaneRepository():
     def __init__(self):
