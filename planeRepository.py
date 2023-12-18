@@ -66,7 +66,7 @@ class PlaneRepository():
         plane.set_passengers(passengers)
         self.__data[index] = plane
 
-    def sort_planes_nr(self):
+    def sort_planes_passenger_count(self):
         """
         D: Sorts the airplanes based on the number of passengers.
         I: None
@@ -74,7 +74,7 @@ class PlaneRepository():
         """
         self.__data = sortalg(self.__data, lambda x, y: x.get_nr_of_passengers() < y.get_nr_of_passengers())
 
-    def sort_planes_nr_first_name(self, first_name):
+    def sort_planes_nr_of_ppl_first_name(self, first_name):
         """
         D: Sorts the airplanes based on the number of passengers with a specific first name.
         I: first_name (str) - The first name to consider.
