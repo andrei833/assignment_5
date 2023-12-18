@@ -15,8 +15,8 @@ class Ui():
             self.menu()
             command = input("")
             
-            if command is "0":
+            if command == "0":
                 alive = False
-            elif command is "1":
+            elif command == "1":
                 self.__repo.get_planes()
             else: print("Wrong command! Retry!")
