@@ -4,8 +4,8 @@ class Ui():
 
     def menu(self):
         s = "Menu:\n"
-        s += "1) Get all airplanes\n"
-        s += ""
+        s += "1) Get all airplanes.\n"
+        s += "2) Get plane by index."
         print(s)
     
     def Start(self):
