@@ -62,5 +62,3 @@ class PlaneRepository():
             if ok:
                 planes.append(p)
         return planes
-    
-repo = PlaneRepository()
