@@ -1,4 +1,10 @@
 def mergesort(my_list, my_relation):
+    """
+    D: Sorts a list using the merge sort algorithm based on a specified relation.
+    I: my_list (list) - The list to be sorted.
+       my_relation (function) - The relation used for sorting.
+    O: Returns the sorted list.
+    """
     if len(my_list) <= 1:
         return my_list
 
@@ -12,6 +18,13 @@ def mergesort(my_list, my_relation):
     return merge(arrOne, arrTwo, my_relation)
 
 def merge(a, b, my_relation):
+    """
+    D: Merges two sorted lists based on a specified relation.
+    I: a (list) - The first sorted list.
+       b (list) - The second sorted list.
+       my_relation (function) - The relation used for merging.
+    O: Returns the merged list.
+    """
     c = []
     while len(a) and len(b):
         if my_relation(a[0], b[0]) == False:
@@ -27,4 +40,10 @@ def merge(a, b, my_relation):
     return c
 
 def sortalg(my_list, my_relation):
+    """
+    D: Performs sorting on a list using the merge sort algorithm based on a specified relation.
+    I: my_list (list) - The list to be sorted.
+       my_relation (function) - The relation used for sorting.
+    O: Returns the sorted list.
+    """
     return mergesort(my_list, my_relation)
