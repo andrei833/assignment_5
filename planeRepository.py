@@ -1,4 +1,5 @@
 from planeClass import Plane
+from passengerClass import Passenger
 from logic import sortalg
 
 class PlaneRepository():
@@ -21,6 +22,9 @@ class PlaneRepository():
     
     def add_plane(self,plane):
         self.__data.append(plane)
+
+    def add_passenger_to_plane(self,index,passenger):
+        self.__data[index].add_passenger(passenger)
 
     def sort_passengers_plane(self,index):
         plane = self.get_plane_index(index)
@@ -62,3 +66,16 @@ class PlaneRepository():
             if ok:
                 planes.append(p)
         return planes
+    
+    def get_passenger_string_plane(self,index,string):
+        people = []
+        all_people = self.get_plane_index(index).get_list_of_passengers()
+        print (all_people)
+        for passenger in all_people:
+            if string in passenger.get_first_name() or string in passenger.get_last_name():
+                people.append(passenger)
+        return people
+    
+#repo = PlaneRepository()
+#people = repo.get_passenger_string_plane(0,"i")
+#print(people)
