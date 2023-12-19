@@ -1,6 +1,6 @@
 from Domain.planeClass import Plane
 from Domain.passengerClass import Passenger
-from Utils.logic import sortalg
+from Utils.logic import sortalg,lin_search
 
 class PlaneRepository():
     def __init__(self):
@@ -103,8 +103,8 @@ class PlaneRepository():
             for pas in passengers:
                 nr = [int(digit) for digit in str(pas.get_passport_nr())]
                 if len(nr)>=3 :
-                    if (nr[0] == nr[1]) and (nr[1] == nr[2]):
-                     ok = 1
+                    if lin_search(nr,lambda x: (x[0] == x[1]) and (x[1] == x[2])):
+                        ok = 1
             if ok:
                 planes.append(p)
         return planes
@@ -116,11 +116,8 @@ class PlaneRepository():
         string (str) - The string to search for in passengers' names.
         O: Returns a list of passengers.
         """
-        people = []
         all_people = self.get_plane_index(index).get_list_of_passengers()
-        for passenger in all_people:
-            if string in passenger.get_first_name() or string in passenger.get_last_name():
-                people.append(passenger)
+        people = lin_search(all_people,lambda x: string in x.get_first_name() or string in x.get_last_name())
         return people
 
     def get_planes_by_name(self, first, last):
@@ -134,9 +131,8 @@ class PlaneRepository():
         for p in self.__data:
             ok = 0
             passengers = p.get_list_of_passengers()
-            for pas in passengers:
-                if pas.get_first_name() == first and pas.get_last_name() == last:
-                    ok = 1
+            if lin_search(passengers,lambda x: x.get_first_name() == first and x.get_last_name() == last) != None:
+                ok = 1
             if ok:
                 planes.append(p)
         return planes

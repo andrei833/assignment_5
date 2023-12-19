@@ -47,3 +47,11 @@ def sortalg(my_list, my_relation):
     O: Returns the sorted list.
     """
     return mergesort(my_list, my_relation)
+
+
+def lin_search(my_list,my_relation):
+    result = []
+    for i in range(0,len(my_list)):
+        if my_relation(my_list[i]):
+            result.append(my_list[i])
+    return result
