@@ -4,7 +4,7 @@ class Plane():
     def __init__(self,id,airlane,nr_seats,destination,passenger = [
             Passenger("Ian","Lee",242),
             Passenger("Tim","John",1273),
-            Passenger("Alice","Smith",1573)
+            Passenger("Alice","Smith",7773)
         ]):
         self.__id = id
         self.__airline = airlane

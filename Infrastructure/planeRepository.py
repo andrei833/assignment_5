@@ -6,7 +6,7 @@ class PlaneRepository():
     def __init__(self):
         self.__data = [Plane(12,"Wiz",23,"Beijing"),
                        Plane(1,"R_Air",43,"NewYork"),
-                       Plane(1,"Airbuss",11,"France")]
+                       Plane(3,"Airbuss",11,"France")]
 
     def __str__(self):
         return f"There are {len(self.__data)} airplanes."
@@ -101,9 +101,10 @@ class PlaneRepository():
             ok = 0
             passengers = p.get_list_of_passengers()
             for pas in passengers:
-                nr = pas.get_passport_nr()
-                if nr[0] == nr[1] == nr[2]:
-                    ok = 1
+                nr = [int(digit) for digit in str(pas.get_passport_nr())]
+                if len(nr)>=3 :
+                    if (nr[0] == nr[1]) and (nr[1] == nr[2]):
+                     ok = 1
             if ok:
                 planes.append(p)
         return planes
