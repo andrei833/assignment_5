@@ -50,6 +50,12 @@ def sortalg(my_list, my_relation):
 
 
 def lin_search(my_list,my_relation):
+    """
+    D: Performs linear search on a list based on a specified relation.
+    I: my_list (list) - The list to be searched.
+       my_relation (function) - The relation used for searching.
+    O: Returns a list of elements satisfying the specified relation.
+    """
     result = []
     for i in range(0,len(my_list)):
         if my_relation(my_list[i]):

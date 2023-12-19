@@ -5,8 +5,8 @@ from Utils.logic import sortalg,lin_search
 class PlaneRepository():
     def __init__(self):
         self.__data = [Plane(12,"Wiz",23,"Beijing"),
-                       Plane(1,"R_Air",43,"NewYork"),
-                       Plane(3,"Airbuss",11,"France")]
+                       Plane(1,"R_Air",43,"NewYork",[Passenger("James","Dave",142),Passenger("Tom","Jakes",22273),Passenger("Ali","Smiles",7273)]),
+                       Plane(3,"Airbuss",11,"France",[Passenger("Alan","Davis",32),Passenger("Roman","Johnson",43),Passenger("Ava","Taylor",73111)])]
 
     def __str__(self):
         return f"There are {len(self.__data)} airplanes."
