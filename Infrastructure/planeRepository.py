@@ -62,10 +62,10 @@ class PlaneRepository():
         """
         plane = self.get_plane_index(index)
         passengers = plane.get_list_of_passengers()
-        passengers = sortalg(passengers, lambda x, y: x.get_last_name() < y.get_last_name())
+        passengers = sortalg(passengers, lambda x, y: x.get_last_name() > y.get_last_name())
         plane.set_passengers(passengers)
         self.__data[index] = plane
-
+    
     def sort_planes_passenger_count(self):
         """
         D: Sorts the airplanes based on the number of passengers.

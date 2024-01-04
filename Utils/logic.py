@@ -48,7 +48,7 @@ def sortalg(my_list, my_relation):
     """
     return mergesort(my_list, my_relation)
 
-
+#search
 def lin_search(my_list,my_relation):
     """
     D: Performs linear search on a list based on a specified relation.
@@ -61,3 +61,57 @@ def lin_search(my_list,my_relation):
         if my_relation(my_list[i]):
             result.append(my_list[i])
     return result
+
+
+#backtracking
+def is_ok(value, first_relation, second_relation):
+    """
+    D: Checks if a list satisfies the specified relations for backtracking.
+    I: value (list) - The list to be checked.
+       first_relation (function) - The first relation used for checking.
+       second_relation (function) - The second relation used for checking.
+    O: Returns True if the list satisfies the relations, False otherwise.
+    """
+    seen = set()
+    for i in value:
+        if i in seen:
+            return False
+        seen.add(i)
+
+    n = len(value)
+    for i in range(0, n-1):
+        for j in range(i+1, n):
+            if not first_relation(value[i], value[j]) or not second_relation(value[i], value[j]):
+                return False
+    return True
+
+def is_sol(value, k):
+    """
+    D: Checks if the list is a solution based on the specified length for backtracking.
+    I: value (list) - The list to be checked.
+       k (int) - The specified length.
+    O: Returns True if the list is a solution, False otherwise.
+    """
+    return len(value) == k
+
+def backtracking(elements, value, results, k, first_relation, second_relation):
+    """
+    D: Performs backtracking on a list based on specified relations and length.
+    I: elements (list) - The elements to choose from during backtracking.
+       value (list) - The current partial solution.
+       results (list) - The list to store valid solutions.
+       k (int) - The specified length for a solution.
+       first_relation (function) - The first relation used for checking.
+       second_relation (function) - The second relation used for checking.
+    O: Returns a list of valid solutions.
+    """
+    for el in elements:
+        value.append(el)
+        if is_ok(value, first_relation, second_relation):
+            if is_sol(value, k):
+                results.append(value.copy())
+            else:
+                backtracking(elements, value, results, k, first_relation, second_relation)
+        value.pop()
+
+    return results
