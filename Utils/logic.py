@@ -115,3 +115,15 @@ def backtracking(elements, value, results, k, first_relation, second_relation):
         value.pop()
 
     return results
+
+def backtracking_wrapper(elements, k, first_relation, second_relation):
+    """
+    D: Wrapper function for the backtracking algorithm.
+    I: elements (list) - The list of elements to be considered.
+       k (int) - The desired size of the subset.
+       first_relation (function) - The first relation function used for filtering subsets.
+       second_relation (function) - The second relation function used for filtering subsets.
+    O: Returns the result of the backtracking algorithm for the given parameters.
+    """
+    rez = backtracking(elements, [], [], k, first_relation, second_relation)
+    return rez
