@@ -3,10 +3,10 @@ from Domain.passengerClass import Passenger
 from Utils.logic import sortalg,lin_search,backtracking_wrapper
 
 class PlaneRepository():
-    def __init__(self):
-        self.__data = [Plane(12,"Wiz",23,"Beijing"),
+    def __init__(self,data = [Plane(12,"Wiz",23,"Beijing",[Passenger("Alice","Smith",22242),Passenger("Ian","Lee",22211),Passenger("Tim","John",123)]),
                        Plane(1,"R_Air",43,"NewYork",[Passenger("James","Dave",142),Passenger("Tom","Jakes",22273),Passenger("Ali","Smiles",7273)]),
-                       Plane(5,"Airbuss",11,"NewYork",[Passenger("Alan","Davis",32),Passenger("Roman","Johnson",43),Passenger("Ava","Taylor",73111)])]
+                       Plane(5,"Airbuss",11,"NewYork",[Passenger("Alan","Davis",32),Passenger("Roman","Johnson",43),Passenger("Ava","Taylor",73111)])]):
+        self.__data = data
 
     def __str__(self):
         return f"There are {len(self.__data)} airplanes."
@@ -62,7 +62,7 @@ class PlaneRepository():
         """
         plane = self.get_plane_index(index)
         passengers = plane.get_list_of_passengers()
-        passengers = sortalg(passengers, lambda x, y: x.get_last_name() > y.get_last_name())
+        passengers = sortalg(passengers, lambda x, y: x.get_last_name() < y.get_last_name())
         plane.set_passengers(passengers)
         self.__data[index] = plane
     
@@ -92,22 +92,27 @@ class PlaneRepository():
 
     def get_planes_passport_nr_same_letters(self):
         """
-        D: Retrieves airplanes with passengers having passport numbers with the same letters.
-        I: None
-        O: Returns a list of airplanes.
+        Retrieves airplanes with passengers having passport numbers starting with the same three letters.
+
+        Returns:
+        List of airplanes.
         """
-        planes = []
-        for p in self.__data:
-            ok = 0
-            passengers = p.get_list_of_passengers()
-            for pas in passengers:
-                nr = [int(digit) for digit in str(pas.get_passport_nr())]
-                if len(nr)>=3 :
-                    if lin_search(nr,lambda x: (x[0] == x[1]) and (x[1] == x[2])):
-                        ok = 1
-            if ok:
-                planes.append(p)
-        return planes
+        result_planes = []
+
+        for plane in self.__data:
+            passengers = plane.get_list_of_passengers()
+            if len(passengers) >= 2:
+                numbers = []
+                for passenger in passengers:
+                    passport_number = str(passenger.get_passport_nr())
+                    if len(passport_number) >= 3:
+                        numbers.append(passport_number[:3])
+
+                unique_numbers = set(numbers)
+                if len(numbers) > len(unique_numbers):
+                    result_planes.append(plane)
+
+        return result_planes
 
     def get_passenger_string_plane(self, index, string):
         """
