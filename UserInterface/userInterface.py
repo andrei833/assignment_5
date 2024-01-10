@@ -12,7 +12,10 @@ class Ui():
         s += "6) Sort planes according to the string obtained by concatenation of the number ofpassengers in the plane and the destination.\n"
         s += "7) Identify planes that have passengers with passport numbers starting with the same 3 letters.\n"
         s += "8) Identify passengers from a given plane for which the first name or last name contain a string given as parameter.\n"
-        s += "9) Identify plane/planes where there is a passenger with given name."
+        s += "9) Identify plane/planes where there is a passenger with given name.\n"
+        s += "10) Form groups of 𝒌 passengers from the same plane but with different last names (𝒌 is a value given by the user).\n"
+        s += "11) Form groups of 𝒌 planes with the same destination but belonging to different airline companies (𝒌 is a value given by the user).\n"
+        s += "0) Exit."
         print(s)
     
     def Start(self):
@@ -43,6 +46,10 @@ class Ui():
                 self.ui_get_passangers_from_plane_string()
             elif command == "9":
                 self.ui_get_planes_passenger_name()
+            elif command == "10":
+                self.ui_get_k_people_same_plane_different_last_name()
+            elif command == "11":
+                self.ui_get_k_planes_same_destination_different_airline()
             else: print("Wrong command! Retry!")
 
 
@@ -96,5 +103,25 @@ class Ui():
             else:
                 for r in result:
                     print(r)
+        except Exception as err:
+            print(f"Error:{err}")
+
+    def ui_get_k_people_same_plane_different_last_name(self):
+        try:
+            k = int(input("k="))
+            if k<2:
+                raise Exception("K has to be greater than 1.")
+            for plane in self.__repo.get_k_passengers_from_same_plane(k):
+                print(plane)
+        except Exception as err:
+            print(f"Error:{err}")
+
+    def ui_get_k_planes_same_destination_different_airline(self):
+        try:
+            k = int(input("k="))
+            if k<2:
+                raise Exception("K has to be greater than 1.")
+            for plane in self.__repo.get_k_planes_same_plane_different_airlines(k):
+                print(plane)
         except Exception as err:
             print(f"Error:{err}")

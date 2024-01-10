@@ -1,12 +1,12 @@
 from Domain.planeClass import Plane
 from Domain.passengerClass import Passenger
-from Utils.logic import sortalg,lin_search
+from Utils.logic import sortalg,lin_search,backtracking_wrapper
 
 class PlaneRepository():
     def __init__(self):
         self.__data = [Plane(12,"Wiz",23,"Beijing"),
                        Plane(1,"R_Air",43,"NewYork",[Passenger("James","Dave",142),Passenger("Tom","Jakes",22273),Passenger("Ali","Smiles",7273)]),
-                       Plane(3,"Airbuss",11,"France",[Passenger("Alan","Davis",32),Passenger("Roman","Johnson",43),Passenger("Ava","Taylor",73111)])]
+                       Plane(3,"Airbuss",11,"NewYork",[Passenger("Alan","Davis",32),Passenger("Roman","Johnson",43),Passenger("Ava","Taylor",73111)])]
 
     def __str__(self):
         return f"There are {len(self.__data)} airplanes."
@@ -137,9 +137,30 @@ class PlaneRepository():
                 planes.append(p)
         return planes
 
+    def get_k_passengers_from_same_plane(self,k):
+        """
+        D: Retrieves groups of k passengers from the same plane, ensuring that passengers have different last names.
+        I: k (int) - The desired size of each passenger group.
+        O: Returns a list of groups, where each group consists of k passengers from the same plane with different last names.
+        """
+        groups = []
+        for plane in self.__data:
+            result = backtracking_wrapper(plane.get_list_of_passengers(),k,lambda x,y:x.get_last_name() != y.get_last_name(),lambda x,y:True)
+            groups.append(result)
+        return groups
+
+    def get_k_planes_same_plane_different_airlines(self,k):
+        """
+        D: Retrieves groups of k planes from the dataset, ensuring that planes have different airlines but the same destination.
+        I: k (int) - The desired size of each plane group.
+        O: Returns a list of groups, where each group consists of k planes with different airlines but the same destination.
+        """
+        result = backtracking_wrapper(self.__data,k,lambda x,y:x.get_airline()!=y.get_airline(),lambda x,y:x.get_destination() == y.get_destination())
+        return result
+
     
     
     
 #repo = PlaneRepository()
-#people = repo.get_passenger_string_plane(0,"i")
+#people = repo.get_k_passengers_from_same_plane(2)
 #print(people)
