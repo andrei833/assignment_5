@@ -136,7 +136,7 @@ class PlaneRepository():
         for p in self.__data:
             ok = 0
             passengers = p.get_list_of_passengers()
-            if lin_search(passengers,lambda x: x.get_first_name() == first and x.get_last_name() == last) != None:
+            if len(lin_search(passengers,lambda x: x.get_first_name() == first and x.get_last_name() == last)) != 0 :
                 ok = 1
             if ok:
                 planes.append(p)

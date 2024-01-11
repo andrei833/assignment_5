@@ -37,7 +37,7 @@ class Ui():
             elif command == "4":
                 self.__repo.sort_planes_passenger_count()
             elif command == "5":
-                self.__repo.sort_planes_nr_of_ppl_first_name()
+                self.__repo.sort_planes_nr_of_ppl_first_name("A")
             elif command == "6":
                 self.__repo.sort_planes_concat_nr_and_dest()
             elif command == "7":
@@ -72,6 +72,13 @@ class Ui():
         try:
             index = self.get_index()
             self.__repo.sort_passengers_plane(index)
+        except Exception as err:
+            print(f"Error:{err}")
+
+    def ui_sort_planes_nr_of_ppl_first_name(self):
+        try:
+            first_name = input()
+            self.__repo.sort_planes_nr_of_ppl_first_name(first_name)
         except Exception as err:
             print(f"Error:{err}")
 
